@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-and-handling
+  labels:
+    app: shipping-and-handling
+  namespace: ecommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping-and-handling
+  template:
+    metadata:
+      labels:
+        app: shipping-and-handling
+    spec:
+      containers:
+        - name: shipping-and-handling
+          image: hema995/e-commerce-app-main_shipping
+          ports:
+            - containerPort: 8088
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      initContainers:
+        - name: init-mongodb
+          image: mongo:4.4.6
+          command: ['sh', '-c', 'until nc -z mongodb-shipping-and-handling 27017; do echo waiting for mongodb; sleep 2; done;']
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      restartPolicy: Always
+      envFrom:
+        - configMapRef:
+            name: shipping-and-handling-config
+      
+          
+          

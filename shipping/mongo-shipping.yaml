@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-shipping-and-handling
+  namespace: ecommerce
+  labels:
+    app: mongodb-shipping-and-handling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-shipping-and-handling
+  template:
+    metadata:
+      labels:
+        app: mongodb-shipping-and-handling
+    spec:
+      containers:
+        - name: mongodb-shipping
+          image: mongo:4.4.6
+          ports:
+            - containerPort: 27017
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          volumeMounts:
+            - name: mongodb-shipping-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-shipping-pvc
+          persistentVolumeClaim:
+            claimName: mongodb-shipping-pvc

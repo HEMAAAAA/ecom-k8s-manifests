@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profile-management
+  template:
+    metadata:
+      labels:
+        app: profile-management
+    spec:
+      containers:
+        - name: profile-management
+          image: hema995/e-commerce-app-main_profile-management
+          ports:
+            - containerPort: 3003
+          env:
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: profile-management-config
+                  key: MYSQL_HOST
+            - name: MYSQL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: profile-management-config
+                  key: MYSQL_PORT
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: profile-management-config
+                  key: MYSQL_DATABASE
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: profile-management-config
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: profile-management-secret
+                  key: MYSQL_PASSWORD
+          resources:
+        - name: init-mysql
+          image: mysql:5.7
+          command: ['sh', '-c', 'until nc -z mysql-profile-management 3306; do echo waiting for mysql; sleep 2; done;']
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      restartPolicy: Always
+      

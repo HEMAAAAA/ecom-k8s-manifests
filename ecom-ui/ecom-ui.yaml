@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-ui
+  namespace: ecommerce
+  labels:
+    app: ecommerce-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-ui
+  template:
+    metadata:
+      labels:
+        app: ecommerce-ui
+    spec:
+      containers:
+        - name: ecommerce-ui
+          image: hema995/e-commerce-app-main_ui
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          env:
+            - name: REACT_APP_CONTACT_API_HOST
+              value: "http://contact-support-service"
+            - name: REACT_APP_PRODUCT_API_HOST
+              value: "http://product-catalog-service"
+            - name: REACT_APP_INVENTORY_API_HOST
+              value: "http://product-inventory-service"
+            - name: REACT_APP_ORDER_API_HOST
+              value: "http://order-management-service"
+            - name: REACT_APP_SHIPPING_API_HOST
+              value: "http://shipping-and-handling-service"
+            - name: REACT_APP_PROFILE_API_HOST
+              value: "http://profile-management-service"
+      
+            

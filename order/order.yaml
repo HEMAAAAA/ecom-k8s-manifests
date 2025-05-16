@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-management
+  namespace: ecommerce
+  labels:
+    app: order-management
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-management
+  template:
+    metadata:
+      labels:
+        app: order-management
+    spec:
+      containers:
+      - name: order-management
+        image: hema995/e-commerce-app-main_order
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+      initContainers:
+      - name: mysql-init
+        image: mysql:5.7
+        command: ['sh', '-c', 'until nc -z mysql-order-management 3306; do echo waiting for mysql; sleep 2; done;']
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+      restartPolicy: Always
+      envFrom:
+        - configMapRef:
+            name: order-management-config

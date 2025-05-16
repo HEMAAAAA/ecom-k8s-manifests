@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-order-management
+  namespace: ecommerce
+  labels:
+    app: mongodb-order-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-order-management
+  template:
+    metadata:
+      labels:
+        app: mongodb-order-management
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-storage
+      volumes:
+        - name: order-mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: order-mongo-pvc
+            

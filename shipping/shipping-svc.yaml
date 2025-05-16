@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-and-handling-service
+  namespace: ecommerce
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8088
+      targetPort: 8088
+      protocol: TCP
+  selector:
+    app: shipping-and-handling
+  labels:
+    app: shipping-and-handling

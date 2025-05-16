@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: product-inventory-config
+  namespace: ecommerce
+  labels:
+    app.kubernetes.io/name: product-inventory
+    app.kubernetes.io/part-of: ecommerce
+data:
+  POSTGRES_HOST: postgres-inventory
+  POSTGRES_PORT: "5432"
+  

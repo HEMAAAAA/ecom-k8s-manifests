@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ecommerce
+  labels:
+    name: ecommerce
+    app: ecommerce
+    environment: production
+    owner: ecommerce-team
+    team: ecommerce-team
+  annotations:
+    description: "Namespace for the ecommerce application"
+    owner: "ecommerce-team"
+    created-by: "ecommerce-team"
+    created-at: "2023-10-01T12:00:00Z"
+    managed-by: "ecommerce-team"
+    purpose: "Namespace for the ecommerce application"
+    version: "1.0"
+    release: "v1.0.0"
