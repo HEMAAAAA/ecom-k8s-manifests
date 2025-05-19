@@ -3,9 +3,6 @@ kind: ConfigMap
 metadata:
   name: profile-management-config
   namespace: ecommerce
-  labels:
-    app.kubernetes.io/name: profile-management
-    app.kubernetes.io/part-of: ecommerce
 data:
   MYSQL_HOST: mysql-profile-management
   MYSQL_PORT: "3306"

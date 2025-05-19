@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: product-inventory-service
   namespace: ecommerce
-  labels:
-    app: product-inventory
 spec:
   type: ClusterIP
   ports:
@@ -12,4 +10,4 @@ spec:
       targetPort: 3002
       protocol: TCP
   selector:
-    app: product-inventory
+    app.kubernetes.io/name: product-inventory

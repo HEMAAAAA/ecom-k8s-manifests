@@ -12,4 +12,4 @@ spec:
       targetPort: 4000
       protocol: TCP
   selector:
-    app: ecommerce-ui
+    app.kubernetes.io/name: ecommerce-ui

@@ -10,4 +10,4 @@ spec:
       targetPort: 8000
       protocol: TCP
   selector:
-    app: ecommerce-customer-support
+    app.kubernetes.io/name: contact-support

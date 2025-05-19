@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: mysql-profile-svc
   namespace: ecommerce
-  labels:
-    app: mysql-profile-svc
 spec:
   ports:
     - port: 3306
@@ -12,4 +10,4 @@ spec:
       protocol: TCP
   type: ClusterIP
   selector:
-    app: mysql-profile-management
+    app.kubernetes.io/name: mysql-profile-management

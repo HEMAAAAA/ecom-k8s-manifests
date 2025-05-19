@@ -11,5 +11,4 @@ spec:
       protocol: TCP
   selector:
     app: shipping-and-handling
-  labels:
-    app: shipping-and-handling
+  

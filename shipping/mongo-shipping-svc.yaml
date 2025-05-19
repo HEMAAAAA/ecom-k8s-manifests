@@ -11,5 +11,4 @@ spec:
       protocol: TCP
   selector:
     app: mongodb-shipping-and-handling
-  labels:
-    app: mongodb-shipping-and-handling
+  
