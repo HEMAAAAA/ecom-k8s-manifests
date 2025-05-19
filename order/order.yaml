@@ -18,9 +18,12 @@ spec:
     spec:
       containers:
       - name: order-management
-        image: hema995/e-commerce-app-main_order
+        image: hema995/e-commerce-app-main_order:v1.0.0
         ports:
         - containerPort: 9090
+        envFrom:
+          - configMapRef:
+              name: order-management-config
         resources:
           requests:
             memory: "128Mi"
@@ -40,6 +43,4 @@ spec:
             memory: "256Mi"
             cpu: "500m"
       restartPolicy: Always
-      envFrom:
-        - configMapRef:
-            name: order-management-config
+      

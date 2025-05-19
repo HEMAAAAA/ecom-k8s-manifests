@@ -29,9 +29,8 @@ spec:
               cpu: "500m"
           volumeMounts:
             - mountPath: /data/db
-              name: mongo-storage
+              name: mongodb-order-pvc  # <-- Match this name with volumes section
       volumes:
-        - name: order-mongo-persistent-storage
+        - name: mongodb-order-pvc  # <-- Match this name with volumeMounts section
           persistentVolumeClaim:
-            claimName: order-mongo-pvc
-            
+            claimName: mongodb-order-pvc

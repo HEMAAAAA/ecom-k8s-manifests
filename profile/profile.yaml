@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: profile-management
-          image: hema995/e-commerce-app-main_profile-management
+          image: hema995/e-commerce-app-main_profile-management:v1.0.0
+
           ports:
             - containerPort: 3003
           env:
@@ -57,5 +58,6 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "500m"
+            
       restartPolicy: Always
       

@@ -28,7 +28,7 @@ spec:
               memory: "1Gi"
               cpu: "500m"
           volumeMounts:
-            - name: mongodb-shipping-storage
+            - name: mongodb-shipping-pvc
               mountPath: /data/db
       volumes:
         - name: mongodb-shipping-pvc

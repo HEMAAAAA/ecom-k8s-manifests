@@ -1,3 +1,4 @@
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-      http:
+    - http:                               # ✅ This must be under a list item
         paths:
           - path: /
             pathType: Prefix
@@ -37,21 +38,21 @@ spec:
                 name: product-catalog-service
                 port:
                   number: 3001
-          - path: "/orders"
+          - path: /orders
             pathType: Prefix
             backend:
               service:
                 name: order-management-service
                 port:
                   number: 9090
-          - path: "/shipping"
+          - path: /shipping
             pathType: Prefix
             backend:
               service:
                 name: shipping-and-handling-service
                 port:
                   number: 8088
-          - path: "/profile"
+          - path: /profile
             pathType: Prefix
             backend:
               service:

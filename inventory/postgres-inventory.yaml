@@ -29,8 +29,8 @@ spec:
               cpu: "500m"
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgres-storage
+              name: postgres-product-inventory-pvc
       volumes:
-        - name: postgres-storage
+        - name: postgres-product-inventory-pvc
           persistentVolumeClaim:
             claimName: postgres-product-inventory-pvc

@@ -50,9 +50,9 @@ spec:
               memory: "1Gi"
               cpu: "500m"
           volumeMounts:
-            - name: mysql-storage
+            - name: mysql-profile-management-pvc
               mountPath: /var/lib/mysql
       volumes:
-        - name: mysql-storage
+        - name: mysql-profile-management-pvc
           persistentVolumeClaim:
             claimName: mysql-profile-management-pvc

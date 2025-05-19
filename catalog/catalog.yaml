@@ -17,9 +17,12 @@ spec:
     spec:
       containers:
         - name: product-catalog
-          image: product-catalog:latest
+          image: hema995/e-commerce-app-main_product-catalog:v1.0.0
           ports:
             - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: product-catalog-configmap
           resources:
             requests:
               memory: "128Mi"
@@ -39,6 +42,3 @@ spec:
               memory: "256Mi"
               cpu: "500m"
       restartPolicy: Always
-      envFrom:
-        - configMapRef:
-            name: product-catalog-config

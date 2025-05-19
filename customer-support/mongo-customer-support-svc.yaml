@@ -3,13 +3,13 @@ kind: Service
 metadata:
   name: mongo-contact-support-service
   namespace: ecommerce
+  labels:                       # ✅ Correct location
+    app: mongodb-contact-support
 spec:
   ports:
     - port: 27017
       targetPort: 27017
       protocol: TCP
   type: ClusterIP
-  labels:
-    app: mongodb-contact-support    
   selector:
     app: mongodb-contact-support

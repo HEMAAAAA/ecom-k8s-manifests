@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: order-management-service
   namespace: ecommerce
+  labels:
+    app: order-management
 spec:
   type: ClusterIP
   ports:
@@ -11,5 +13,4 @@ spec:
       protocol: TCP
   selector:
     app: order-management
-  labels:
-    app: order-management
+  

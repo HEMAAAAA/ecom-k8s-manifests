@@ -17,9 +17,12 @@ spec:
     spec:
       containers:
         - name: shipping-and-handling
-          image: hema995/e-commerce-app-main_shipping
+          image: hema995/e-commerce-app-main_shipping:v1.0.0
           ports:
             - containerPort: 8088
+          envFrom:
+            - configMapRef:
+                name: shipping-and-handling-config
           resources:
             requests:
               memory: "128Mi"
@@ -39,9 +42,6 @@ spec:
               memory: "256Mi"
               cpu: "500m"
       restartPolicy: Always
-      envFrom:
-        - configMapRef:
-            name: shipping-and-handling-config
       
           
           

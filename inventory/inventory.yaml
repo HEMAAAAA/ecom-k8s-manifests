@@ -1,3 +1,5 @@
+
+        
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,11 +19,20 @@ spec:
         app.kubernetes.io/name: product-inventory
         app.kubernetes.io/part-of: ecommerce
     spec:
+      initContainers:
+        - name: init-postgresql
+          image: postgres:13.3
+          command: ['sh', '-c', 'until nc -z postgresql-product-inventory 5432; do echo waiting for postgresql; sleep 2; done;']
       containers:
         - name: product-inventory
-          image: hema995/e-commerce-app-main_inventory
+          image: hema995/e-commerce-app-main_inventory:v1.0.0
           ports:
             - containerPort: 3002
+          envFrom:
+            - configMapRef:
+                name: product-inventory-config
+            - secretRef:
+                name: product-inventory-secret
           resources:
             requests:
               memory: "128Mi"
@@ -29,12 +40,3 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "500m"
-      initContainers:
-        - name: init-postgresql
-          image: postgres:13.3
-          command: ['sh', '-c', 'until nc -z postgresql-product-inventory 5432; do echo waiting for postgresql; sleep 2; done;']
-      restartPolicy: Always
-      envFrom:
-        - configMapRef:
-            name: product-inventory-config
-        

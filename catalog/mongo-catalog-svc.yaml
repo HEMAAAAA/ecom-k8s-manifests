@@ -3,13 +3,13 @@ kind: Service
 metadata:
   name: mongo-product-catalog-service
   namespace: ecommerce
-spec: 
+  labels:
+    app: mongodb-product-catalog  # ✅ Correct placement
+spec:
   ports:
     - port: 27017
       targetPort: 27017
       protocol: TCP
   type: ClusterIP
-  labels:
-    app: mongodb-product-catalog    
   selector:
     app: mongodb-product-catalog

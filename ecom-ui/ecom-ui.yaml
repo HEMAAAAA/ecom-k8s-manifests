@@ -21,7 +21,8 @@ spec:
     spec:
       containers:
         - name: ecommerce-ui
-          image: hema995/e-commerce-app-main_ui
+          image: hema995/e-commerce-app-main_ui:v1.0.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:
