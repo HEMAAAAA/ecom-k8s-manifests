@@ -15,10 +15,13 @@ spec:
       labels:
         app: profile-management
     spec:
+      initContainers:
+        - name: init-myservice
+          image: busybox:1.28
+          command: ['sh', '-c', 'until nslookup mysql-profile-management; do echo waiting for myservice; sleep 2; done;']
       containers:
         - name: profile-management
           image: hema995/e-commerce-app-main_profile-management:v1.0.0
-
           ports:
             - containerPort: 3003
           env:

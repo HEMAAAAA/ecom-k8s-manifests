@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-shipping-and-handling-service
+  name: mongodb-shipping-and-handling
   namespace: ecommerce
 spec:
   type: ClusterIP

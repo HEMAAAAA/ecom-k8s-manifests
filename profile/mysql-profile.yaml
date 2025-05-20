@@ -16,6 +16,7 @@ spec:
       labels:
         app: mysql-profile-management
     spec:
+      
       containers:
         - name: mysql-profile-management
           image: mysql:5.7

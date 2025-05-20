@@ -4,4 +4,4 @@ metadata:
   name: shipping-handling-config
   namespace: ecommerce 
 data:
-  MONGO_URI: mongodb://mongodb-shipping:27017
+  MONGO_URI: mongodb://mongodb-shipping-and-handling:27017

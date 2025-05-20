@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - http:                               # ✅ This must be under a list item
+    - http:
         paths:
           - path: /
             pathType: Prefix

@@ -28,7 +28,7 @@ spec:
             - configMapRef:
                 name: product-inventory-config
             - secretRef:
-                name: product-inventory-secret
+                name: postgres-product-inventory-secret
           resources:
             requests:
               memory: "128Mi"
