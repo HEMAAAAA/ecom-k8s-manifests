@@ -30,17 +30,6 @@ spec:
             cpu: "250m"
           limits:
             memory: "256Mi"
-            cpu: "500m"
-      initContainers:
-      - name: mysql-init
-        image: mysql:5.7
-        command: ['sh', '-c', 'until nc -z mysql-order-management 3306; do echo waiting for mysql; sleep 2; done;']
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "250m"
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
-      restartPolicy: Always
+            cpu: "500m" 
+        
       

@@ -51,7 +51,7 @@ spec:
               cpu: "500m"
           volumeMounts:
             - name: mysql-profile-management-pvc
-              mountPath: /var/lib/mysql
+              mountPath: /mnt/data
       volumes:
         - name: mysql-profile-management-pvc
           persistentVolumeClaim:

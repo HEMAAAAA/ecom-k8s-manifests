@@ -7,6 +7,6 @@ metadata:
     app.kubernetes.io/name: product-inventory
     app.kubernetes.io/part-of: ecommerce
 data:
-  POSTGRES_HOST: postgres-inventory
+  POSTGRES_HOST: "postgres-product-inventory"
   POSTGRES_PORT: "5432"
   

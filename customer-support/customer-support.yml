@@ -16,18 +16,7 @@ spec:
       labels:
         app.kubernetes.io/name: customer-support
         app.kubernetes.io/part-of: ecommerce
-    spec:
-      initContainers:
-        - name: init-mongodb
-          image: mongo:4.4.6
-          command: ['sh', '-c', 'until nc -z mongodb-contact-support 27017; do echo waiting for mongodb; sleep 2; done;']
-          resources:
-            limits:
-              cpu: 100m
-              memory: 128Mi
-            requests:
-              cpu: 50m
-              memory: 64Mi
+    spec: 
       containers:
         - name: customer-support
           image: hema995/e-commerce-app-main_contact-support:v1.0.0

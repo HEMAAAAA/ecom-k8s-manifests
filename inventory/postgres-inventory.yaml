@@ -20,6 +20,24 @@ spec:
           image: postgres:latest
           ports:
             - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-product-inventory-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-product-inventory-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-product-inventory-secret
+                  key: POSTGRES_DB
+            - name: PGDATA
+              value: /mnt/data/pgdata      
           resources:
             requests:
               memory: "256Mi"
@@ -28,7 +46,7 @@ spec:
               memory: "512Mi"
               cpu: "500m"
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
+            - mountPath: /mnt/data
               name: postgres-product-inventory-pvc
       volumes:
         - name: postgres-product-inventory-pvc
