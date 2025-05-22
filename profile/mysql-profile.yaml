@@ -4,8 +4,7 @@ metadata:
   name: mysql-profile-management
   namespace: ecommerce
   labels:
-    app.kubernetes.io/name: mysql-profile-management
-    app.kubernetes.io/part-of: ecommerce
+    app : mysql-profile-management
 spec:
   replicas: 1
   selector:
@@ -19,10 +18,15 @@ spec:
       
       containers:
         - name: mysql-profile-management
-          image: mysql:5.7
+          image: mysql:8.0.32
           ports:
             - containerPort: 3306
           env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: profile-management-secret
+                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
@@ -38,11 +42,6 @@ spec:
                 secretKeyRef:
                   name: profile-management-secret
                   key: MYSQL_PASSWORD
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: profile-management-secret
-                  key: MYSQL_ROOT_PASSWORD
           resources:
             requests:
               memory: "512Mi"
