@@ -3,8 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongodb-contact-support-pvc
   namespace: ecommerce
-metadata:
-  name: mongodb-contact-support-pvc
 spec:
   accessModes:
     - ReadWriteOnce

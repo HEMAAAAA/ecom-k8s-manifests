@@ -6,10 +6,10 @@ metadata:
   labels:
     app: ecommerce-ui
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 4000
       targetPort: 4000
       protocol: TCP
   selector:
-    app.kubernetes.io/name: ecommerce-ui
+    app: ecommerce-ui
