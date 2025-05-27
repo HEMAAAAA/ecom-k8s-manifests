@@ -7,5 +7,5 @@ metadata:
     app.kubernetes.io/name: customer-support
     app.kubernetes.io/part-of: ecommerce
 data:
-  MONGODB_HOST: mongodb-contact-support
+  MONGODB_HOST: mongo-contact-support-service
   MONGODB_PORT: "27017"
