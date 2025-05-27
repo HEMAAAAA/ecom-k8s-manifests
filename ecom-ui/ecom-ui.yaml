@@ -44,6 +44,6 @@ spec:
             - name: REACT_APP_SHIPPING_API_HOST
               value: "http://shipping-and-handling-service"
             - name: REACT_APP_PROFILE_API_HOST
-              value: "http://profile-management-service"
+              value: "http://profile-management"
       
             
